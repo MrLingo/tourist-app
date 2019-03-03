@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Tourist App</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_register_acitivity">RegisterAcitivity</string>
+    <string name="title_activity_user_screen">UserScreen</string>
+    <string name="title_activity_user">UserActivity</string>
+    <string name="title_activity_description">DescriptionActivity</string>
+    <string name="title_activity_destinations">DestinationsActivity</string>
+</resources>
