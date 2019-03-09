@@ -30,10 +30,7 @@ public class UserActivity extends AppCompatActivity {
 
         mail.setText(userCred[0]);
         nickName.setText(userCred[2]);
-        Toast.makeText(UserActivity.this, userCred[0] + " " + userCred[2], Toast.LENGTH_LONG).show();
-
-
-
+        //Toast.makeText(UserActivity.this, userCred[1] + " " + userCred[2], Toast.LENGTH_LONG).show();
 
     } // onCreate method
 }

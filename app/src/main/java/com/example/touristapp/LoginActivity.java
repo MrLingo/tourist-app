@@ -10,6 +10,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import static android.media.CamcorderProfile.get;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -33,13 +36,11 @@ public class LoginActivity extends AppCompatActivity {
 
     } // onCreate method
 
-    // ress[0] = mail, ress[1] = pass, ress[2] = nick name
-    public boolean validateLogin(String[] result, String mail, String password){
-        //Toast.makeText(LoginActivity.this, result[2], Toast.LENGTH_LONG).show();
+    public boolean validateLogin(List<String> result, String mail, String password){
           if(mail.matches("") || password.matches("")){
               return false;
           }
-          else if( mail.equals(result[0]) || mail.equals(result[2]) && password.equals(result[1])){
+          else if( mail.equals(result.get(2)) || mail.equals(result.get(3)) && password.equals(result.get(1))){
               return true;
           }
           else{
@@ -54,29 +55,35 @@ public class LoginActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         String mailField = mailEditText.getText().toString();
                         String passField = passEditText.getText().toString();
-                        String[] ress = myDb.pullUserInfo();
+                        List<String> ress = myDb.pullUserInfo();
 
-                        // Check if there is such user.
-                        if(ress[0].equals("Not such user!")){
-                            Toast.makeText(LoginActivity.this, "Not such user! \n", Toast.LENGTH_LONG).show();
-                        }
-                        else{
+                            //Toast.makeText(LoginActivity.this, ress.get(1) + " " + ress.get(2) + " " + ress.get(3), Toast.LENGTH_LONG).show();
                             if(validateLogin(ress, mailField, passField)){
-                                // redirect to user page
-                                //Intent loginIntent = new Intent(LoginActivity.this, UserActivity.class);
-                                //loginIntent.putExtra("User credentials", ress);
-                                Bundle b=new Bundle();
-                                b.putStringArray("UserCredentials", ress);   //new String[]{value1, value2});
+                                Bundle b = new Bundle();
+                                String[] columnsArr = new String[3];
+
+                                // Transfering values from the list to String array:
+                                String col1 = ress.get(0);
+                                String col2 = ress.get(1);
+                                String col3 = ress.get(2);
+
+                                columnsArr[0] = col1;
+                                columnsArr[1] = col2;
+                                columnsArr[2] = col3;
+
+                                b.putStringArray("UserCredentials", columnsArr);   //new String[]{value1, value2});
+
+                                // Redirect to user page
                                 Intent loginIntent=new Intent(LoginActivity.this, UserActivity.class);
                                 loginIntent.putExtras(b);
                                 startActivity(loginIntent);
+
                                 Toast.makeText(LoginActivity.this, "Logged in!", Toast.LENGTH_LONG).show();
                             }
                             else{
                                 Toast.makeText(LoginActivity.this, "Something went wrong! Try again. \n", Toast.LENGTH_LONG).show();
                             }
-                            //Toast.makeText(LoginActivity.this, ress[0] + " " + ress[1] + " " + ress[2] + "\n", Toast.LENGTH_LONG).show();
-                        }
+
                     } // onClick
                 } // OnClickListener
         );

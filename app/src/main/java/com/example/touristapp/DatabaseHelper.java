@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -60,26 +63,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 " FOREIGN KEY(destinationGroupId) REFERENCES destinationGroup(id) )");
 
         // visits
-        db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_3_NAME + "( " + TABLE_3_COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,  " + TABLE_3_COL_2 +" INTEGER NOT NULL," + TABLE_3_COL_3 + "INTEGER NOT NULL," + TABLE_3_COL_4 + " VARCHAR(25) NOT NULL, " +
-                "FOREIGN KEY(userId) REFERENCES user(id),  FOREIGN KEY(destinationId) REFERENCES destinations(id)) " );
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_3_NAME + "( " + TABLE_3_COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,  " + TABLE_3_COL_2 +" INTEGER NOT NULL, " + TABLE_3_COL_3 + " INTEGER NOT NULL," + TABLE_3_COL_4 + " VARCHAR(25) NOT NULL, " +
+                "FOREIGN KEY(userId) REFERENCES user(id),  FOREIGN KEY(" + TABLE_3_COL_3 + ") REFERENCES destinations(id)) " );
 
         // user
-        db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_1_NAME + "( " + TABLE_1_COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT, " + TABLE_1_COL_2 +" VARCHAR(35) NOT NULL," + TABLE_1_COL_3 +
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_1_NAME + "( " + TABLE_1_COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT, " + TABLE_1_COL_2 +" VARCHAR(35) NOT NULL, " + TABLE_1_COL_3 +
                    " VARCHAR(50) NOT NULL, " + TABLE_1_COL_4 + " VARCHAR(35) NOT NULL )");
 
 
         // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         // Create needed instances:
-       // Resources resources = new Resources();
+        Resources resources = new Resources();
 
         // Insert destinations:
-       // destinationGroupInstance.setDestinationGroup("Театър");
-      //  destinationGroupInstance.setDestinationGroup("Myзей");
-      //  destinationGroupInstance.setDestinationGroup("Пещера");
+        setDestinationGroup("Театър", db);
+        setDestinationGroup("Myзей", db);
+        setDestinationGroup("Пещера", db);
+        setDestinationGroup("Паметник", db);
 
         // Insert destinations in table 1
-      //  destinationsInstance.addDestination("Античен театър", resources.antichenTeaturDesc, "",42.147777, 24.751123, 1 );
+        addDestination("Александър Невски", resources.aleksandurNevskiDesc, "",42.696000, 23.332879, 4 , db );
+        addDestination("Античен театър", resources.antichenTeaturDesc, "",42.147777, 24.751123, 1 , db );
 
     } // onCreate
 
@@ -87,28 +92,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // ---------------------------------------------------------------------------------------------------------------------------------
 
 
-    public String[] pullUserInfo(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        try {
-            Cursor res = db.rawQuery("select mail, password, nickName from " + TABLE_1_NAME , null);
+    public List<String> pullUserInfo() throws RuntimeException {
+        SQLiteDatabase db = this.getReadableDatabase();
+            Cursor res = db.rawQuery("select * from " + TABLE_1_NAME , null);
             int id = res.getColumnIndex(TABLE_1_COL_1);
             int mail = res.getColumnIndex(TABLE_1_COL_2);
             int password = res.getColumnIndex(TABLE_1_COL_3);
             int nickName = res.getColumnIndex(TABLE_1_COL_4);
 
+            ArrayList<String> list= new ArrayList<String>();
+
+            while(res.moveToNext()){
+                String col1 = res.getString(mail);
+                String col2 = res.getString(password);
+                String col3 = res.getString(nickName);
+                list.add(col1);
+                list.add(col2);
+                list.add(col3);
+            }
+
+            res.close();
+            db.close();
+            return list;
+
+            /*
             String[] result = new String[4];
             for( res.moveToFirst(); !res.isAfterLast(); res.moveToNext()){
-                result[0] = res.getString(mail);
-                result[1] = res.getString(password);
-                result[2] = res.getString(nickName);
+                result[0] = res.getString(id);
+                result[1] = res.getString(mail);
+                result[2] = res.getString(password);
+                result[3] = res.getString(nickName);
             }
             return result;
-
-        }catch (Exception e){
-            String[] falseStr = new String[1];
-            falseStr[0] = "No such user!";
-            return falseStr;
-        }
+            */
     }
 
 
@@ -130,10 +146,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    public String[] getDesinations(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        try {
-            Cursor res = db.rawQuery("select destinationName, destinationImg, destinationDescription, latitude, longitude, destinationGroupId from " + TABLE_2_NAME , null);
+    public String[] getDestinations()  throws RuntimeException{
+        SQLiteDatabase db = this.getReadableDatabase();
+            Cursor res = db.rawQuery("select * from " + TABLE_2_NAME , null);
             int id = res.getColumnIndex(TABLE_2_COL_1);
             int destinationName = res.getColumnIndex(TABLE_2_COL_2);
             int destinationImg = res.getColumnIndex(TABLE_2_COL_3);
@@ -141,6 +156,58 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             int latitude = res.getColumnIndex(TABLE_2_COL_5);
             int longitude = res.getColumnIndex(TABLE_2_COL_6);
             int destinationGroupId = res.getColumnIndex(TABLE_2_COL_7);
+
+            List<String> destList = new ArrayList<String>();
+            String[] result = new String[7];
+
+
+        if (res.moveToFirst()){
+            do {
+                // Passing values
+                String column1 = res.getString(0);
+                String column2 = res.getString(1);
+                String column3 = res.getString(2);
+                String column4 = res.getString(3);
+                String column5 = res.getString(4);
+                String column6 = res.getString(5);
+                String column7 = res.getString(6);
+
+                // Do something Here with values
+                result[0] = column1;
+                result[1] = column2;
+                result[2] = column3;
+                result[3] = column4;
+                result[4] = column5;
+                result[5] = column6;
+                result[6] = column7;
+
+            } while(res.moveToNext());
+        }
+        res.close();
+        db.close();
+
+        return result;
+
+            /*
+            if (res.moveToFirst()) {
+                while (!res.isAfterLast()) {
+                    String nameRes = res.getString(res.getColumnIndex(String.valueOf(destinationName)));
+                    String imgRes = res.getString(res.getColumnIndex(String.valueOf(destinationImg)));
+                    String descriptionRes = res.getString(res.getColumnIndex(String.valueOf(destinationDescription)));
+                    String latitudeRes = res.getString(res.getColumnIndex(String.valueOf(latitude)));
+                    String longitudeRes = res.getString(res.getColumnIndex(String.valueOf(longitude)));
+                    String destGroupIdRes = res.getString(res.getColumnIndex(String.valueOf(destinationGroupId)));
+
+                    destList.add(nameRes);
+                    destList.add(imgRes);
+                    destList.add(descriptionRes);
+                    destList.add(latitudeRes);
+                    destList.add(longitudeRes);
+                    destList.add(destGroupIdRes);
+                    res.moveToNext();
+                }
+            }
+            return destList;
 
             String[] result = new String[7];
             for( res.moveToFirst(); !res.isAfterLast(); res.moveToNext()){
@@ -152,17 +219,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 result[5] = res.getString(destinationGroupId);
             }
             return result;
-
-        }catch (Exception e){
-            String[] falseStr = new String[1];
-            falseStr[0] = "Error!";
-            return falseStr;
-        }
-
+             */
     }
 
-    public boolean addDestination(String destinationName, String destinationDescription, String destinationImg, double latitude, double longitude, int destinationGroupId){
-        SQLiteDatabase db = this.getWritableDatabase();
+    public boolean addDestination(String destinationName, String destinationDescription, String destinationImg, double latitude, double longitude, int destinationGroupId, SQLiteDatabase db){
         ContentValues contentValues = new ContentValues();
         contentValues.put(TABLE_2_COL_2, destinationName);
         contentValues.put(TABLE_2_COL_3, destinationImg);
@@ -181,7 +241,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public String[] getVisits(){
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         try {
             Cursor res = db.rawQuery("select userId, destinationId, visitDate from " + TABLE_3_NAME , null);
             int id = res.getColumnIndex(TABLE_3_COL_1);
@@ -205,8 +265,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean setVisit(int userId, int destinationId, String visitDate){
-        SQLiteDatabase db = this.getWritableDatabase();
+    public boolean setVisit(int userId, int destinationId, String visitDate, SQLiteDatabase db){
         ContentValues contentValues = new ContentValues();
         contentValues.put(TABLE_3_COL_2, userId);
         contentValues.put(TABLE_3_COL_3, destinationId);
@@ -222,7 +281,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public String[] getDestinationGroup(){
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         try {
             Cursor res = db.rawQuery("select name from " + TABLE_4_NAME , null);
             int id = res.getColumnIndex(TABLE_4_COL_1);
@@ -240,8 +299,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public boolean setDestinationGroup(String name){
-        SQLiteDatabase db = this.getWritableDatabase();
+    public boolean setDestinationGroup(String name, SQLiteDatabase db){
         ContentValues contentValues = new ContentValues();
         contentValues.put(TABLE_4_COL_2, name);
         long result = db.insert(TABLE_4_NAME, null, contentValues);

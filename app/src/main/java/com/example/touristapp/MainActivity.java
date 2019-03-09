@@ -10,9 +10,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import java.util.List;
 
 import static com.example.touristapp.DatabaseHelper.DATABASE_NAME;
 
@@ -54,11 +57,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /*
         Button newDbBtn = findViewById(R.id.newDbBtn);
         newDbBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 myDb.reCreateTable1();
                 Toast.makeText(MainActivity.this, "Database dropped!", Toast.LENGTH_LONG).show();
+            }
+        });
+         */
+
+        Button destBtn = findViewById(R.id.pullDestBtn);
+        destBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //List<String> result = myDb.getDestinations();
+                String [] result = myDb.getDestinations();
+                // result[0] - destName  result[3] - lan result[4] - lon
+                //Toast.makeText(MainActivity.this, result.get(0) + "  " + result.get(3) + "  " + result.get(4) + " " + result.get(5), Toast.LENGTH_LONG).show();
+                // Toast.makeText(MainActivity.this, result[0] + " " + result[5] + " " + result[6], Toast.LENGTH_LONG).show();
+                Log.i("TAG", result[0] + "  " + result[1] + "  " + result[5] + " " + result[6]);
             }
         });
 
