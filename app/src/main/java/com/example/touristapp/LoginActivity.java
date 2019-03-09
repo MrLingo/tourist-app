@@ -12,6 +12,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
+
     DatabaseHelper myDb;
     EditText mailEditText, passEditText;
     Button loginBtn;
@@ -23,11 +24,10 @@ public class LoginActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        myDb = new DatabaseHelper(this);
-
         mailEditText = (EditText) findViewById(R.id.logMailInput);
         passEditText = (EditText) findViewById(R.id.logPassInput);
         loginBtn = (Button) findViewById(R.id.loginBtn);
+        myDb = new DatabaseHelper(this);
 
         PullData();
 

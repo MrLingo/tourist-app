@@ -32,5 +32,8 @@ public class UserActivity extends AppCompatActivity {
         nickName.setText(userCred[2]);
         Toast.makeText(UserActivity.this, userCred[0] + " " + userCred[2], Toast.LENGTH_LONG).show();
 
+
+
+
     } // onCreate method
 }
