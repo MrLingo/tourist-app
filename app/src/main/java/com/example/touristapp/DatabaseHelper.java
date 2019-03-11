@@ -75,17 +75,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         // Create needed instances:
-        Resources resources = new Resources();
+        Resources res = new Resources();
 
         // Insert destinations:
-        setDestinationGroup("Театър", db);
-        setDestinationGroup("Myзей", db);
-        setDestinationGroup("Пещера", db);
-        setDestinationGroup("Паметник", db);
+        setDestinationGroup("Театър", db);     // 1
+        setDestinationGroup("Myзей", db);      // 2
+        setDestinationGroup("Пещера", db);     // 3
+        setDestinationGroup("Паметник", db);   // 4
+        setDestinationGroup("Връх", db);       // 5
+        setDestinationGroup("Резерват", db);   // 6
+        setDestinationGroup("Манастир", db);   // 7
+        setDestinationGroup("Друго", db);      // 8
+
+
 
         // Insert destinations in table 1
-        addDestination("Александър Невски", resources.aleksandurNevskiDesc, "",42.696000, 23.332879, 4 , db );
-        addDestination("Античен театър", resources.antichenTeaturDesc, "",42.147777, 24.751123, 1 , db );
+        addDestination("Александър Невски", res.aleksandurNevskiDesc, res.aleksandurNevskiImg,42.696000, 23.332879, 4 , db );
+        addDestination("Античен театър", res.antichenTeaturDesc, res.antichenTeaturImg,42.147777, 24.751123, 1 , db );
+        addDestination("Археологически Резерват „Калиакра”", res.rezervatKaliakraDesc, res.rezervatKaliakraImg,43.361190, 28.465788, 6 , db );
+        addDestination("Асенова Крепост", res.asenovaKrepostDesc, res.asenovaKrepostImg,41.987020, 24.873552, 8 , db );
+        addDestination("Бачковски Манастир", res.bachkovskiManastirDesc, res.bachkovskiManastirImg,41.942380, 24.849340, 7 , db );
+        addDestination("Белоградчишки Скали", res.belogradchishkiSkaliDesc, res.belogradchishkiSkaliImg,43.623361, 22.677964, 8 , db );
+        addDestination("Вр. Мусала (2925 М.) - Рила", res.mysalaDesc, res.mysalaImg,42.180021, 23.585167, 8 , db );
+        addDestination("Връх Снежанка", res.vruhSnejankaDesc, res.vruhSnejankaImg,41.638506, 24.675594, 5 , db );
+        addDestination("Връх Шипка", res.shipkaDesc, res.shipkaImg,42.748281, 25.321387, 5 , db );
+        addDestination("Мадарски Конник", res.madarskiKonnikDesc, res.madarskiKonnikImg,43.277708, 27.118949, 8 , db );
+        addDestination("Национален Музей Параход Радецки", res.radeckiDesc, res.radeckiImg,43.799125, 23.676921, 2 , db );
+        addDestination("Паметник На Христо Ботев И Неговата Чета", res.hristoBotevDesc, res.hristoBotevImg,43.798045, 23.677926, 4 , db );
+        addDestination("Перперикон Хиперперакион", res.perperikonDesc, res.perperikonImg,41.718126, 25.468954, 8 , db );
+        addDestination("Пещера – Пещера „Снежанка“ (Дължина 145 М)", res.peshteraSnejankaDesc, res.peshteraSnejankaImg,42.004459, 24.278645, 3 , db );
+        addDestination("Пещера „Леденика“", res.ledenikaDesc, res.ledenikaImg,43.204703, 23.493687, 3 , db );
+        addDestination("Резерват „Сребърна“", res.sreburnaDesc, res.sreburnaImg,44.115654, 27.071807, 6 , db );
+        addDestination("Седемте рилски езера", res.rilskiEzeraDesc, res.rilskiEzeraImg,42.203413, 23.319871, 8 , db );
+        addDestination("Царевец", res.carevecDesc, res.carevecImg,43.084030, 25.652586, 8 , db );
+        addDestination("Чудните мостове", res.chydniMostoveDesc, res.chydniMostoveImg,41.819929, 24.581748, 8 , db );
+        addDestination("Ягодинска пещера", res.qgodinskaPeshteraDesc, res.qgodinskaPeshteraImg,41.628984, 24.329589, 3 , db );
+
 
     } // onCreate
 

@@ -72,8 +72,18 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 List<String> result = myDb.getDestinations();
                 //Toast.makeText(MainActivity.this, result.get(0) + "  " + result.get(3) + "  " + result.get(4) + " " + result.get(5), Toast.LENGTH_LONG).show();
-                Log.i("TAG", result.get(1) +  " " + result.get(9)); // През 8 индекса достъпваме еднакви колони (e.g. Title of destinations)
-            }
+                //Log.i("TAG", result.get(1) +  " " + result.get(9)); // През 8 индекса достъпваме еднакви колони (e.g. Title of destinations)
+
+                //int size = result.size();
+                // Log.i("TAG", Integer.toString(size)); // 16
+
+                int index = 1;
+                for(int i = 0; i < result.size(); i++){
+                    Log.i("TAG", result.get(index - 1) + " \n");
+                    index++;
+                }
+
+            } // onClick
         });
 
         /*
