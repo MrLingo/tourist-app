@@ -70,16 +70,14 @@ public class MainActivity extends AppCompatActivity {
         Button destBtn = findViewById(R.id.pullDestBtn);
         destBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //List<String> result = myDb.getDestinations();
-                String [] result = myDb.getDestinations();
-                // result[0] - destName  result[3] - lan result[4] - lon
+                List<String> result = myDb.getDestinations();
                 //Toast.makeText(MainActivity.this, result.get(0) + "  " + result.get(3) + "  " + result.get(4) + " " + result.get(5), Toast.LENGTH_LONG).show();
-                // Toast.makeText(MainActivity.this, result[0] + " " + result[5] + " " + result[6], Toast.LENGTH_LONG).show();
-                Log.i("TAG", result[0] + "  " + result[1] + "  " + result[5] + " " + result[6]);
+                Log.i("TAG", result.get(1) +  " " + result.get(9)); // През 8 индекса достъпваме еднакви колони (e.g. Title of destinations)
             }
         });
 
         /*
+        // Refactor: put extra info ( result from above ) and in destinationActivity run loop and generate the destinations on the map.
         Button destinationsTab = findViewById(R.id.destnationsTab);
         regBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

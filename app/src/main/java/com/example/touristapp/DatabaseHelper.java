@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,7 +90,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     } // onCreate
 
 
-    // ---------------------------------------------------------------------------------------------------------------------------------
+      // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
     public List<String> pullUserInfo() throws RuntimeException {
@@ -114,17 +115,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             res.close();
             db.close();
             return list;
-
-            /*
-            String[] result = new String[4];
-            for( res.moveToFirst(); !res.isAfterLast(); res.moveToNext()){
-                result[0] = res.getString(id);
-                result[1] = res.getString(mail);
-                result[2] = res.getString(password);
-                result[3] = res.getString(nickName);
-            }
-            return result;
-            */
     }
 
 
@@ -146,81 +136,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    public String[] getDestinations()  throws RuntimeException{
+    public List<String> getDestinations()  throws RuntimeException {
         SQLiteDatabase db = this.getReadableDatabase();
-            Cursor res = db.rawQuery("select * from " + TABLE_2_NAME , null);
-            int id = res.getColumnIndex(TABLE_2_COL_1);
-            int destinationName = res.getColumnIndex(TABLE_2_COL_2);
-            int destinationImg = res.getColumnIndex(TABLE_2_COL_3);
-            int destinationDescription = res.getColumnIndex(TABLE_2_COL_4);
-            int latitude = res.getColumnIndex(TABLE_2_COL_5);
-            int longitude = res.getColumnIndex(TABLE_2_COL_6);
-            int destinationGroupId = res.getColumnIndex(TABLE_2_COL_7);
+        Cursor res = db.rawQuery("select * from " + TABLE_2_NAME, null);
 
-            List<String> destList = new ArrayList<String>();
-            String[] result = new String[7];
+        int id = res.getColumnIndex(TABLE_2_COL_1);
+        int destinationName = res.getColumnIndex(TABLE_2_COL_2);
+        int destinationImg = res.getColumnIndex(TABLE_2_COL_3);
+        int destinationDescription = res.getColumnIndex(TABLE_2_COL_4);
+        int latitude = res.getColumnIndex(TABLE_2_COL_5);
+        int longitude = res.getColumnIndex(TABLE_2_COL_6);
+        int destinationGroupId = res.getColumnIndex(TABLE_2_COL_7);
 
+        List<String> destList = new ArrayList<String>();
 
-        if (res.moveToFirst()){
-            do {
-                // Passing values
-                String column1 = res.getString(0);
-                String column2 = res.getString(1);
-                String column3 = res.getString(2);
-                String column4 = res.getString(3);
-                String column5 = res.getString(4);
-                String column6 = res.getString(5);
-                String column7 = res.getString(6);
+        if (res.moveToFirst()) {
 
-                // Do something Here with values
-                result[0] = column1;
-                result[1] = column2;
-                result[2] = column3;
-                result[3] = column4;
-                result[4] = column5;
-                result[5] = column6;
-                result[6] = column7;
+            //iterate over rows
+            for (int i = 0; i < res.getCount(); i++) {
 
-            } while(res.moveToNext());
-        }
-        res.close();
-        db.close();
+                //iterate over the columns
+                for(int j = 0; j < res.getColumnNames().length; j++){
 
-        return result;
-
-            /*
-            if (res.moveToFirst()) {
-                while (!res.isAfterLast()) {
-                    String nameRes = res.getString(res.getColumnIndex(String.valueOf(destinationName)));
-                    String imgRes = res.getString(res.getColumnIndex(String.valueOf(destinationImg)));
-                    String descriptionRes = res.getString(res.getColumnIndex(String.valueOf(destinationDescription)));
-                    String latitudeRes = res.getString(res.getColumnIndex(String.valueOf(latitude)));
-                    String longitudeRes = res.getString(res.getColumnIndex(String.valueOf(longitude)));
-                    String destGroupIdRes = res.getString(res.getColumnIndex(String.valueOf(destinationGroupId)));
-
-                    destList.add(nameRes);
-                    destList.add(imgRes);
-                    destList.add(descriptionRes);
-                    destList.add(latitudeRes);
-                    destList.add(longitudeRes);
-                    destList.add(destGroupIdRes);
-                    res.moveToNext();
+                    //append the column value to the string builder and delimit by a pipe symbol
+                    destList.add(res.getString(j) + "|");
                 }
-            }
-            return destList;
+                //add a new line carriage return
+                destList.add("\n");
 
-            String[] result = new String[7];
-            for( res.moveToFirst(); !res.isAfterLast(); res.moveToNext()){
-                result[0] = res.getString(destinationName);
-                result[1] = res.getString(destinationImg);
-                result[2] = res.getString(destinationDescription);
-                result[3] = res.getString(latitude);
-                result[4] = res.getString(longitude);
-                result[5] = res.getString(destinationGroupId);
+                //move to the next row
+                res.moveToNext();
             }
-            return result;
-             */
+        }
+
+            res.close();
+            db.close();
+            return destList;
     }
+
+
 
     public boolean addDestination(String destinationName, String destinationDescription, String destinationImg, double latitude, double longitude, int destinationGroupId, SQLiteDatabase db){
         ContentValues contentValues = new ContentValues();
