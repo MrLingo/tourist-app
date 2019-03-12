@@ -110,6 +110,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         addDestination("Царевец", res.carevecDesc, res.carevecImg,43.084030, 25.652586, 8 , db );
         addDestination("Чудните мостове", res.chydniMostoveDesc, res.chydniMostoveImg,41.819929, 24.581748, 8 , db );
         addDestination("Ягодинска пещера", res.qgodinskaPeshteraDesc, res.qgodinskaPeshteraImg,41.628984, 24.329589, 3 , db );
+        //addDestination("Ягодинска пещера", res.qgodinskaPeshteraDesc, res.qgodinskaPeshteraImg,41.628984, 24.329589, 3 , db );
 
     } // onCreate
 

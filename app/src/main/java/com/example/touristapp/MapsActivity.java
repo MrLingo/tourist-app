@@ -55,9 +55,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         for(int r = 0; r < records.length; r++){
 
-            if(index == 153){
-                lat = Double.parseDouble(records[156]);
-                lon = Double.parseDouble(records[157]);
+            if(index == records.length - 7){
+                lat = Double.parseDouble(records[records.length - 4]);
+                lon = Double.parseDouble(records[records.length - 3]);
                 LatLng dest = new LatLng(lat, lon);
                 mMap.addMarker(new MarkerOptions().position(dest).title(records[index])).showInfoWindow();
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(dest, zoomLevel));

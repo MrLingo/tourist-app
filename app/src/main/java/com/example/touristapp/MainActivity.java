@@ -97,8 +97,6 @@ public class MainActivity extends AppCompatActivity {
         });
         */
 
-
-        // Refactor: put extra info ( result from above ) and in destinationActivity run loop and generate the destinations on the map.
         Button destinationsBtn = findViewById(R.id.destBtn);
         destinationsBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
