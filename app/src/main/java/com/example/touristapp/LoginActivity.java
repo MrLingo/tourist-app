@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
           if(mail.matches("") || password.matches("")){
               return false;
           }
-          else if( mail.equals(result.get(2)) || mail.equals(result.get(3)) && password.equals(result.get(1))){
+          else if( mail.equals(result.get(0)) || mail.equals(result.get(2)) && password.equals(result.get(1))){
               return true;
           }
           else{
@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                         String passField = passEditText.getText().toString();
                         List<String> ress = myDb.pullUserInfo();
 
-                            //Toast.makeText(LoginActivity.this, ress.get(1) + " " + ress.get(2) + " " + ress.get(3), Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this, ress.get(0) + " " + ress.get(1) + " " + ress.get(2) , Toast.LENGTH_LONG).show();
                             if(validateLogin(ress, mailField, passField)){
                                 Bundle b = new Bundle();
                                 String[] columnsArr = new String[3];
@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                                 b.putStringArray("UserCredentials", columnsArr);   //new String[]{value1, value2});
 
                                 // Redirect to user page
-                                Intent loginIntent=new Intent(LoginActivity.this, UserActivity.class);
+                                Intent loginIntent = new Intent(LoginActivity.this, UserActivity.class);
                                 loginIntent.putExtras(b);
                                 startActivity(loginIntent);
 

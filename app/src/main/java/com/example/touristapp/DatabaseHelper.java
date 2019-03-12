@@ -78,6 +78,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Resources res = new Resources();
 
         // Insert destinations:
+
         setDestinationGroup("Театър", db);     // 1
         setDestinationGroup("Myзей", db);      // 2
         setDestinationGroup("Пещера", db);     // 3
@@ -86,7 +87,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         setDestinationGroup("Резерват", db);   // 6
         setDestinationGroup("Манастир", db);   // 7
         setDestinationGroup("Друго", db);      // 8
-
 
 
         // Insert destinations in table 1
@@ -202,6 +202,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public boolean addDestination(String destinationName, String destinationDescription, String destinationImg, double latitude, double longitude, int destinationGroupId, SQLiteDatabase db){
+        //db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(TABLE_2_COL_2, destinationName);
         contentValues.put(TABLE_2_COL_3, destinationImg);
@@ -279,6 +280,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean setDestinationGroup(String name, SQLiteDatabase db){
+        //db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(TABLE_4_COL_2, name);
         long result = db.insert(TABLE_4_NAME, null, contentValues);
@@ -309,16 +311,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(TABLE_1_COL_2, mail);
         contentValues.put(TABLE_1_COL_3, password);
         contentValues.put(TABLE_1_COL_4, nickName);
-        db.update(TABLE_1_NAME, contentValues, "ID = ?", new String[] {id});
+        db.update(TABLE_1_NAME, contentValues, "ID = ?", new String[]{id});
         return true;
     }
 
 
-    public void reCreateTable1(){
+    public void emptyTables(){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("DROP TABLE IF EXISTS  " + TABLE_1_NAME);
-        db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_1_NAME + "( " + TABLE_1_COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT, " + TABLE_1_COL_2 +" VARCHAR(35) NOT NULL," + TABLE_1_COL_3 +
-                " VARCHAR(50) NOT NULL, " + TABLE_1_COL_4 + " VARCHAR(35) NOT NULL )");
+
+        db.delete(TABLE_1_NAME, null, null);
+        db.delete(TABLE_2_NAME, null, null);
+        db.delete(TABLE_3_NAME, null, null);
+        db.delete(TABLE_4_NAME, null, null);
+
     }
 
 }

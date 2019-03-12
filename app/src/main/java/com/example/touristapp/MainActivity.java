@@ -57,15 +57,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*
+
         Button newDbBtn = findViewById(R.id.newDbBtn);
         newDbBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                myDb.reCreateTable1();
+               // myDb.reCreateTable1();
+                myDb.emptyTables();
                 Toast.makeText(MainActivity.this, "Database dropped!", Toast.LENGTH_LONG).show();
             }
         });
-         */
+
 
         Button destBtn = findViewById(R.id.pullDestBtn);
         destBtn.setOnClickListener(new View.OnClickListener() {
@@ -74,13 +75,21 @@ public class MainActivity extends AppCompatActivity {
                 //Toast.makeText(MainActivity.this, result.get(0) + "  " + result.get(3) + "  " + result.get(4) + " " + result.get(5), Toast.LENGTH_LONG).show();
                 //Log.i("TAG", result.get(1) +  " " + result.get(9)); // През 8 индекса достъпваме еднакви колони (e.g. Title of destinations)
 
-                //int size = result.size();
-                // Log.i("TAG", Integer.toString(size)); // 16
+                // Number of TOTAL columns.
+                int size = result.size();
+                //Log.i("TAG", Integer.toString(size)); // 16
+
+                String[] resultArr = new String[size];
 
                 int index = 1;
-                for(int i = 0; i < result.size(); i++){
-                    Log.i("TAG", result.get(index - 1) + " \n");
+                for(int i = 0; i < size; i++){
+                    //Log.i("TAG", result.get(index - 1) + " \n");
+                    resultArr[i] = result.get(index - 1);
                     index++;
+                }
+
+                for(int j = 0; j < resultArr.length; j++){
+                    Log.i("resultArr", resultArr[j]);
                 }
 
             } // onClick
