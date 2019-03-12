@@ -111,7 +111,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         addDestination("Чудните мостове", res.chydniMostoveDesc, res.chydniMostoveImg,41.819929, 24.581748, 8 , db );
         addDestination("Ягодинска пещера", res.qgodinskaPeshteraDesc, res.qgodinskaPeshteraImg,41.628984, 24.329589, 3 , db );
 
-
     } // onCreate
 
 
@@ -183,8 +182,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 //iterate over the columns
                 for(int j = 0; j < res.getColumnNames().length; j++){
 
-                    //append the column value to the string builder and delimit by a pipe symbol
-                    destList.add(res.getString(j) + "|");
+                    //append the column value to the string builder
+                    destList.add(res.getString(j));
                 }
                 //add a new line carriage return
                 destList.add("\n");

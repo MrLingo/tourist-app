@@ -45,7 +45,36 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         float zoomLevel = 7.0f;
 
         // Add a markers of every destination and move the camera
+        Bundle b = this.getIntent().getExtras();
+        String[] records = b.getStringArray("Records");
 
+        double lat;
+        double lon;
+
+        int index = 1;
+
+        for(int r = 0; r < records.length; r++){
+
+            if(index == 153){
+                lat = Double.parseDouble(records[156]);
+                lon = Double.parseDouble(records[157]);
+                LatLng dest = new LatLng(lat, lon);
+                mMap.addMarker(new MarkerOptions().position(dest).title(records[index])).showInfoWindow();
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(dest, zoomLevel));
+                break;
+            }
+
+            lat = Double.parseDouble(records[index+3]);
+            lon = Double.parseDouble(records[index+4]);
+
+            LatLng dest = new LatLng(lat, lon);
+            mMap.addMarker(new MarkerOptions().position(dest).title(records[index])).showInfoWindow();
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(dest, zoomLevel));
+            index+=8;
+        }
+
+
+        /*
         // Царевец
         LatLng carevec = new LatLng(43.084030f, 25.652586f);
         mMap.addMarker(new MarkerOptions().position(carevec).title("Царевец")).showInfoWindow();
@@ -126,6 +155,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //Храм-Паметник „Александър Невски“
         LatLng aleksandurNevski = new LatLng(42.696000f, 23.332879f);
         mMap.addMarker(new MarkerOptions().position(aleksandurNevski).title("Храм-Паметник „Александър Невски“")).showInfoWindow();
+        */
 
     } // onMapReady
 } // Class

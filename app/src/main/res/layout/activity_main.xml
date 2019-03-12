@@ -126,21 +126,20 @@
         android:id="@+id/newDbBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginLeft="72dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="New db"
         app:layout_constraintBottom_toTopOf="@+id/frameLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TitleText" />
+        app:layout_constraintTop_toBottomOf="@+id/TitleText"
+        app:layout_constraintVertical_bias="0.285" />
 
     <Button
         android:id="@+id/pullDestBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="128dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
@@ -148,7 +147,22 @@
         android:text="Pull destinations"
         app:layout_constraintBottom_toTopOf="@+id/frameLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintTop_toBottomOf="@+id/TitleText" />
+
+    <Button
+        android:id="@+id/destBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Destinations"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
+        app:layout_constraintEnd_toStartOf="@+id/pullDestBtn"
+        app:layout_constraintHorizontal_bias="0.617"
         app:layout_constraintStart_toEndOf="@+id/newDbBtn"
         app:layout_constraintTop_toBottomOf="@+id/TitleText" />
 

@@ -68,17 +68,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        /*
         Button destBtn = findViewById(R.id.pullDestBtn);
         destBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 List<String> result = myDb.getDestinations();
-                //Toast.makeText(MainActivity.this, result.get(0) + "  " + result.get(3) + "  " + result.get(4) + " " + result.get(5), Toast.LENGTH_LONG).show();
                 //Log.i("TAG", result.get(1) +  " " + result.get(9)); // През 8 индекса достъпваме еднакви колони (e.g. Title of destinations)
 
                 // Number of TOTAL columns.
                 int size = result.size();
                 //Log.i("TAG", Integer.toString(size)); // 16
 
+                // Every record stored here:
                 String[] resultArr = new String[size];
 
                 int index = 1;
@@ -94,16 +95,36 @@ public class MainActivity extends AppCompatActivity {
 
             } // onClick
         });
+        */
 
-        /*
+
         // Refactor: put extra info ( result from above ) and in destinationActivity run loop and generate the destinations on the map.
-        Button destinationsTab = findViewById(R.id.destnationsTab);
-        regBtn.setOnClickListener(new View.OnClickListener() {
+        Button destinationsBtn = findViewById(R.id.destBtn);
+        destinationsBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MapsActivity.class));
+                Bundle b = new Bundle();
+
+                List<String> result = myDb.getDestinations();
+
+                // Number of TOTAL columns.
+                int size = result.size();
+
+                // Every record stored here:
+                String[] resultArr = new String[size];
+
+                int index = 1;
+                for(int i = 0; i < size; i++){
+                    resultArr[i] = result.get(index - 1);
+                    index++;
+                }
+
+                b.putStringArray("Records", resultArr);
+                Intent mapsIntent = new Intent(MainActivity.this, MapsActivity.class);
+                mapsIntent.putExtras(b);
+                startActivity(mapsIntent);
             }
         });
-        */
+
 
         // ( Eventually move to 'Destination Screen' activity later. )
         Location carevec = LocationFactory(43.084030f, 25.652586f );
