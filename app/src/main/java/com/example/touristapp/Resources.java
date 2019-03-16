@@ -252,28 +252,26 @@ public class Resources {
 
 
     // Images paths:
-    String aleksandurNevskiImg = "";
-    String antichenTeaturImg  = "";
-    String asenovaKrepostImg  = "";
-    String bachkovskiManastirImg  = "";
-    String belogradchishkiSkaliImg  = "";
-    String carevecImg  = "";
-    String chydniMostoveImg  = "";
-    String hristoBotevImg  = "";
-    String radeckiImg  = "";
-    String ledenikaImg  = "";
+    String aleksandurNevskiImg = "aleksandar_nevski";
+    String antichenTeaturImg  = "antichen_teatur_plovdiv";
+    String asenovaKrepostImg  = "asenova_krepost";
+    String bachkovskiManastirImg  = "bachkovski_manastir";
+    String belogradchishkiSkaliImg  = "belogradchiski_skali";
+    String carevecImg  = "carevec";
+    String chydniMostoveImg  = "chydni_mostove";
+    String hristoBotevImg  = "hristo_botev_pametnik";
+    String radeckiImg  = "kozlodui_radezki";
+    String ledenikaImg  = "ledenika";
 
-    String madarskiKonnikImg  = "";
-    String perperikonImg  = "";
-    String peshteraSnejankaImg  = "";
-    String qgodinskaPeshteraImg  = "";
-    String rezervatKaliakraImg  = "";
-    String rilskiEzeraImg  = "";
-    String shipkaImg  = "";
-    String sreburnaImg  = "";
-    String mysalaImg  = "";
-    String vruhSnejankaImg = "";
-
-
+    String madarskiKonnikImg  = "madarski_konnik";
+    String perperikonImg  = "perperikon";
+    String peshteraSnejankaImg  = "peshtera_snejanka";
+    String qgodinskaPeshteraImg  = "qgodinska_peshtera";
+    String rezervatKaliakraImg  = "rezervat_kaliakra";
+    String rilskiEzeraImg  = "rilski_ezera";
+    String shipkaImg  = "shipka";
+    String sreburnaImg  = "srebarna";
+    String mysalaImg  = "vr_mysala";
+    String vruhSnejankaImg = "vr_snejanka";
 
 }

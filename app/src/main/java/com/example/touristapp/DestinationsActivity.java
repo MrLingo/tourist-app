@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -36,7 +37,7 @@ public class DestinationsActivity extends AppCompatActivity {
 
         stringArr = new ArrayList<>();
 
-        List<String> result = myDb.getDestinations();
+        final List<String> result = myDb.getDestinations();
 
         int index = 1;
         for(int i = 0; i < result.size(); i++){
@@ -51,12 +52,26 @@ public class DestinationsActivity extends AppCompatActivity {
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //ItemClicked item = adapter.getItemAtPosition(position);
+                Toast.makeText(DestinationsActivity.this, stringArr.get(position), Toast.LENGTH_LONG).show();
+                Bundle b = new Bundle();
 
-                Toast.makeText(DestinationsActivity.this, stringArr.get(position), Toast.LENGTH_LONG);
-                Intent intent = new Intent(DestinationsActivity.this, DescriptionActivity.class);
-                //based on item add info to intent
-                startActivity(intent);
+                // Final result array
+                String[] destArr = new String[3];
+
+                //result.set(position, null);
+                if(position == 0){
+                    destArr[0] = result.get(1);
+                    destArr[1] = result.get(2);
+                    destArr[2] = result.get(3);
+                }
+
+                //Log.i("DestinationInfo", destArr[0] + " ||| " + destArr[1] + " ||| " + destArr[2]);
+
+                b.putStringArray("destinationInfo", destArr);
+                Intent destinationsIntent = new Intent(DestinationsActivity.this, DescriptionActivity.class);
+                destinationsIntent.putExtras(b);
+
+                startActivity(destinationsIntent);
             }
         });
 

@@ -167,8 +167,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         int id = res.getColumnIndex(TABLE_2_COL_1);
         int destinationName = res.getColumnIndex(TABLE_2_COL_2);
-        int destinationImg = res.getColumnIndex(TABLE_2_COL_3);
-        int destinationDescription = res.getColumnIndex(TABLE_2_COL_4);
+        int destinationDescription = res.getColumnIndex(TABLE_2_COL_3);
+        int destinationImg = res.getColumnIndex(TABLE_2_COL_4);
         int latitude = res.getColumnIndex(TABLE_2_COL_5);
         int longitude = res.getColumnIndex(TABLE_2_COL_6);
         int destinationGroupId = res.getColumnIndex(TABLE_2_COL_7);
@@ -205,8 +205,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(TABLE_2_COL_2, destinationName);
-        contentValues.put(TABLE_2_COL_3, destinationImg);
-        contentValues.put(TABLE_2_COL_4, destinationDescription);
+        contentValues.put(TABLE_2_COL_3, destinationDescription);
+        contentValues.put(TABLE_2_COL_4, destinationImg);
         contentValues.put(TABLE_2_COL_5, latitude);
         contentValues.put(TABLE_2_COL_6, longitude);
         contentValues.put(TABLE_2_COL_7, destinationGroupId);
