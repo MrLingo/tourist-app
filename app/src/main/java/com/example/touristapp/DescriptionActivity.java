@@ -8,12 +8,15 @@ import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class DescriptionActivity extends AppCompatActivity {
 
     TextView destTitle, destDescription;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,39 @@ public class DescriptionActivity extends AppCompatActivity {
 
         destTitle.setText(destinationInfo[0]);
         destDescription.setText(destinationInfo[1]);
+
+
+        CheckBox checkBox = findViewById( R.id.checkBox );
+        /*
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+            {
+                if ( isChecked )
+                {
+                    // perform logic
+                }
+
+
+            }
+        }); // onCheck button listener
+
+        */
+
+        checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // Check distance between current GPS Location and the destination.
+
+                if(((CompoundButton) view).isChecked()){
+                    System.out.println("Checked");
+                } else {
+                    System.out.println("Un-Checked");
+                }
+            }
+        });
 
     } // onCreate
 }

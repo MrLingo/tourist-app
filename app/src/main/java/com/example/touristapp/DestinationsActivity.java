@@ -23,6 +23,7 @@ public class DestinationsActivity extends AppCompatActivity {
     ArrayAdapter adapter;
     ListView myListView;
     DatabaseHelper myDb;
+    List<String> result2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +33,12 @@ public class DestinationsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         myDb = new DatabaseHelper(this);
-
         myListView = findViewById(R.id.listView);
-
         stringArr = new ArrayList<>();
 
         final List<String> result = myDb.getDestinations();
 
+        // Put every destination title inside ListView.
         int index = 1;
         for(int i = 0; i < result.size(); i++){
             if(index == result.size() - 7){
@@ -56,17 +56,17 @@ public class DestinationsActivity extends AppCompatActivity {
                 Bundle b = new Bundle();
 
                 // Final result array
-                String[] destArr = new String[3];
+                String[] destArr = new String[2];
 
-                //result.set(position, null);
-                if(position == 0){
-                    destArr[0] = result.get(1);
-                    destArr[1] = result.get(2);
-                    destArr[2] = result.get(3);
-                }
+                // Get title + description of the clicked current list item.
+                result2 = myDb.getDestTitleAndDesc(position + 1);
 
-                //Log.i("DestinationInfo", destArr[0] + " ||| " + destArr[1] + " ||| " + destArr[2]);
+                destArr[0] = result2.get(0);
+                destArr[1] = result2.get(1);
 
+                //Log.i("DestinationInfo", destArr[0] + " ||| " + destArr[1]);
+
+                // Send title and description to the DescriptionActivity.
                 b.putStringArray("destinationInfo", destArr);
                 Intent destinationsIntent = new Intent(DestinationsActivity.this, DescriptionActivity.class);
                 destinationsIntent.putExtras(b);

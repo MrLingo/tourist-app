@@ -331,4 +331,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //db.delete(TABLE_1_NAME, TABLE_1_COL_2 + "=" + mail + " and " + TABLE_1_COL_4 + "=" + nickName, null);
         db.execSQL("DELETE FROM " + TABLE_1_NAME + " WHERE " + TABLE_1_COL_2 + " = '" + mail + "' AND " + TABLE_1_COL_4 + " = '" + nickName + "' ");
     }
+
+    public List<String> getDestTitleAndDesc(int position){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("select destinationName, destinationDescription from " + TABLE_2_NAME + " where id = " + position, null);
+
+        int id = res.getColumnIndex(TABLE_2_COL_1);
+        int destinationName = res.getColumnIndex(TABLE_2_COL_2);
+        int destinationDescription = res.getColumnIndex(TABLE_2_COL_3);
+
+        List<String> destList = new ArrayList<String>();
+
+        if (res.moveToFirst()) {
+
+            //iterate over rows
+            for (int i = 0; i < res.getCount(); i++) {
+
+                //iterate over the columns
+                for(int j = 0; j < res.getColumnNames().length; j++){
+
+                    //append the column value to the string builder
+                    destList.add(res.getString(j));
+                }
+                //add a new line carriage return
+                destList.add("\n");
+
+                //move to the next row
+                res.moveToNext();
+            }
+        }
+
+        res.close();
+        db.close();
+        return destList;
+    }
+
 }
