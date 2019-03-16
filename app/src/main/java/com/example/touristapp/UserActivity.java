@@ -39,7 +39,7 @@ public class UserActivity extends AppCompatActivity {
 
         myDb=new DatabaseHelper(this);
 
-        Button delDbBtn = findViewById(R.id.deleteProfilBtn);
+        Button delDbBtn = findViewById(R.id.deleteProfileBtn);
         delDbBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // myDb.reCreateTable1();

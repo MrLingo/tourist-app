@@ -12,9 +12,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.touristapp.DatabaseHelper.DATABASE_NAME;
@@ -68,7 +70,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        /*
+        Button destListBtn = findViewById(R.id.destListBtn);
+        destListBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, DestinationsActivity.class));
+            }
+        });
+
+
+
         Button destBtn = findViewById(R.id.pullDestBtn);
         destBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -95,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
             } // onClick
         });
-        */
+
 
         Button destinationsBtn = findViewById(R.id.destBtn);
         destinationsBtn.setOnClickListener(new View.OnClickListener() {
@@ -122,6 +132,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(mapsIntent);
             }
         });
+
+
+
+
 
 
         // ( Eventually move to 'Destination Screen' activity later. )
@@ -208,4 +222,10 @@ public class MainActivity extends AppCompatActivity {
         }
        */
     } // onCreate Method
+
+    public void viewList(){
+
+
+    }
+
 }  // Class
