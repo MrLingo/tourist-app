@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E73B3B"
+    tools:context=".LoginActivity">
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="207dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="20dp"
+        android:background="#E73B3B"
+        android:text="Влез"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/regPassInput"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/TitleText"
+        android:layout_width="318dp"
+        android:layout_height="126dp"
+        android:fontFamily="@font/sonsie_one"
+        android:gravity="center"
+        android:text="Вход"
+        android:textColor="#34CC3D"
+        android:textSize="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="64dp" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="282dp"
+        android:layout_height="419dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="#34CC3D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TitleText" />
+
+    <EditText
+        android:id="@+id/regPassInput"
+        android:layout_width="171dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="396dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/г" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="268dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center|center_vertical"
+        android:text="Copyright &#169; 2019 BestDevelopersFMI"
+        android:textColor="#34CC3D"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.472"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+        app:layout_constraintVertical_bias="0.415" />
+
+
+    <EditText
+        android:id="@+id/logMailInput"
+        android:layout_width="170dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_marginTop="36dp"
+        android:gravity="center"
+        android:text="Имейл / Потр. име"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/г"
+        android:layout_width="171dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="52dp"
+        android:gravity="center"
+        android:text="Парола"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/logMailInput"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/logPassInput"
+        android:layout_width="171dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/г" />
+
+</android.support.constraint.ConstraintLayout>
