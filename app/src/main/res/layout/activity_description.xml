@@ -25,15 +25,13 @@
 
     <ImageView
         android:id="@+id/destImg"
-        android:layout_width="219dp"
-        android:layout_height="144dp"
+        android:layout_width="279dp"
+        android:layout_height="206dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/destinationTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout2"
@@ -42,12 +40,12 @@
     <TextView
         android:id="@+id/descriptionSection"
         android:layout_width="305dp"
-        android:layout_height="203dp"
+        android:layout_height="151dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="8dp"
         android:scrollbars="vertical"
         android:textColor="#34CC3D"
         app:layout_constraintBottom_toTopOf="@+id/checkBox"
@@ -72,18 +70,21 @@
     <TextView
         android:id="@+id/destinationTitle"
         android:layout_width="230dp"
-        android:layout_height="39dp"
+        android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center"
         android:textColor="#34CC3D"
         android:textSize="15dp"
         app:layout_constraintBottom_toTopOf="@+id/descriptionSection"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/destImg"
+        app:layout_constraintVertical_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>

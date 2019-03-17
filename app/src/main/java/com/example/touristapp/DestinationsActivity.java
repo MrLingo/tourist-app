@@ -56,17 +56,18 @@ public class DestinationsActivity extends AppCompatActivity {
                 Bundle b = new Bundle();
 
                 // Final result array to pass to Intent.
-                String[] destArr = new String[4];
+                String[] destArr = new String[5];
 
                 // Get title + description of the clicked current list item.
                 result2 = myDb.getSingleDestInfo(position + 1);
 
                 destArr[0] = result2.get(0); // title
                 destArr[1] = result2.get(1); // description
-                destArr[2] = result2.get(2); // latitude
-                destArr[3] = result2.get(3); // longitude
+                destArr[2] = result2.get(2); // image
+                destArr[3] = result2.get(3); // latitude
+                destArr[4] = result2.get(4); // longitude
 
-                Log.i("DestinationInfo", destArr[0] + " ||| " + destArr[1]);
+                Log.i("DestinationInfo", destArr[2]);
 
                 // Send title and description to the DescriptionActivity.
                 b.putStringArray("destinationInfo", destArr);

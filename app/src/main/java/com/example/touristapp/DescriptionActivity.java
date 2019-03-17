@@ -2,6 +2,8 @@ package com.example.touristapp;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -70,31 +72,20 @@ public class DescriptionActivity extends AppCompatActivity {
         destTitle.setText(destinationInfo[0]);
         destDescription.setText(destinationInfo[1]);
 
-        final CheckBox checkBox = findViewById(R.id.checkBox);
+        // --------------------------------------------
 
-        // ( Eventually move to 'Destination Screen' activity later. )
-        /*
-        Location carevec = LocationFactory(43.084030f, 25.652586f );
-        Location chydniMostove = LocationFactory(41.819929f, 24.581748f );
-        Location yagodinskaPeshtera = LocationFactory(41.628984f, 24.329589f );
-        Location vruhSnejanka = LocationFactory(41.638506f, 24.675594f );
-        Location belogradchishkiSkali = LocationFactory(43.623361f, 22.677964f );
-        Location peshteraLedenika = LocationFactory(43.204703f, 23.493687f );
-        Location pametnikHristoBotev = LocationFactory(43.798045f, 23.677926f);
-        Location myzeiParahodRadecki = LocationFactory(43.799125f, 23.676921f );
-        Location rezervatKaliakra = LocationFactory(43.361190f, 28.465788f );
-        Location perperikon = LocationFactory(41.718126f, 25.468954f );
-        Location vruhMysala = LocationFactory(42.180021f, 23.585167f);
-        Location vruhShipka = LocationFactory(42.748281f, 25.321387f );
-        Location peshteraSnejanka = LocationFactory(42.004459f, 24.278645f );
-        Location antichenTeatur = LocationFactory(42.147109f, 24.751005f );
-        Location asenovaKrepost = LocationFactory(41.987020f, 24.873552f );
-        Location bachkovskiManastir = LocationFactory(41.942380f, 24.849340f );
-        Location rezervatSreburna = LocationFactory(44.115654f, 27.071807f );
-        Location madarskiKonnik = LocationFactory(43.277708f, 27.118949f );
-        Location sedemteRilskiEzera = LocationFactory(42.203413f, 23.319871f );
-        Location aleksandurNevski = LocationFactory(42.696000f, 23.332879f );
-         */
+        // Change dest image from a string
+
+        Resources res = getResources();
+        String mDrawableName = destinationInfo[2];
+        int resID = res.getIdentifier(mDrawableName , "drawable", getPackageName());
+        Drawable drawable = res.getDrawable(resID);
+        img.setImageDrawable(drawable);
+
+
+        // ---------------------------------------------
+
+        final CheckBox checkBox = findViewById(R.id.checkBox);
 
         //Add current GPS location:
 
@@ -130,8 +121,8 @@ public class DescriptionActivity extends AppCompatActivity {
                             Location myLocation = LocationFactory(latitude, longtitude);
 
                             // Get latitude and longitude strings of the clicked destination and parse them into floats.
-                            float destLatitude = Float.parseFloat(destinationInfo[2].replace("\"", ""));
-                            float destLongitude = Float.parseFloat(destinationInfo[3].replace("\"", ""));
+                            float destLatitude = Float.parseFloat(destinationInfo[3].replace("\"", ""));
+                            float destLongitude = Float.parseFloat(destinationInfo[4].replace("\"", ""));
 
                             //
                             Location destinationToVisit = LocationFactory(destLatitude, destLongitude);
@@ -165,8 +156,8 @@ public class DescriptionActivity extends AppCompatActivity {
                 // If GPS connection cannot be established create hardcoded instance
                 else {
                     Location myLocation = LocationFactory(42.131612f, 24.783277f);
-                    float destLatitude = Float.parseFloat(destinationInfo[2].replace("\"", ""));
-                    float destLongitude = Float.parseFloat(destinationInfo[3].replace("\"", ""));
+                    float destLatitude = Float.parseFloat(destinationInfo[3].replace("\"", ""));
+                    float destLongitude = Float.parseFloat(destinationInfo[4].replace("\"", ""));
 
                     Location destinationToVisit = LocationFactory(destLatitude, destLongitude);
                     boolean isInsideRadius = calculateDistance(myLocation, destinationToVisit);
@@ -179,15 +170,6 @@ public class DescriptionActivity extends AppCompatActivity {
                     }
 
                 }
-
-
-                /*
-                if(((CompoundButton) view).isChecked()){
-                    System.out.println("Checked");
-                } else {
-                    System.out.println("Un-Checked");
-                }
-                */
             } //onClick
         }); // onClickCheckBox Listener.
 

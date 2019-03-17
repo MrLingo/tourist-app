@@ -160,7 +160,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-
     public List<String> getDestinations()  throws RuntimeException {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery("select * from " + TABLE_2_NAME, null);
@@ -279,6 +278,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+
     public boolean setDestinationGroup(String name, SQLiteDatabase db){
         //db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -304,6 +304,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+
     public boolean updateUserInfo(String id, String mail, String password, String nickName, int visitedDestinations){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -326,15 +327,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+
     public void  deleteUser(String mail, String nickName){
         SQLiteDatabase db = this.getWritableDatabase();
         //db.delete(TABLE_1_NAME, TABLE_1_COL_2 + "=" + mail + " and " + TABLE_1_COL_4 + "=" + nickName, null);
         db.execSQL("DELETE FROM " + TABLE_1_NAME + " WHERE " + TABLE_1_COL_2 + " = '" + mail + "' AND " + TABLE_1_COL_4 + " = '" + nickName + "' ");
     }
 
+
     public List<String> getSingleDestInfo(int position){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select destinationName, destinationDescription, latitude, longitude from " + TABLE_2_NAME + " where id = " + position, null);
+        Cursor res = db.rawQuery("select destinationName, destinationDescription, destinationImg latitude, longitude from " + TABLE_2_NAME + " where id = " + position, null);
 
         List<String> destList = new ArrayList<String>();
 
