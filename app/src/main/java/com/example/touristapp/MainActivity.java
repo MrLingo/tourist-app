@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+/*
         Button newDbBtn = findViewById(R.id.newDbBtn);
         newDbBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Database dropped!", Toast.LENGTH_LONG).show();
             }
         });
+        */
 
     } // onCreate Method
 

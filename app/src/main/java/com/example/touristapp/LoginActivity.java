@@ -37,7 +37,11 @@ public class LoginActivity extends AppCompatActivity {
     } // onCreate method
 
     public boolean validateLogin(List<String> result, String mail, String password){
-          if(mail.matches("") || password.matches("")){
+          if(result.size() == 0){
+              Toast.makeText(LoginActivity.this, "Няма такъв потребител!" , Toast.LENGTH_LONG).show();
+              return false;
+          }
+          else if(mail.matches("") || password.matches("")){
               return false;
           }
           else if( mail.equals(result.get(0)) || mail.equals(result.get(2)) && password.equals(result.get(1))){
@@ -57,7 +61,6 @@ public class LoginActivity extends AppCompatActivity {
                         String passField = passEditText.getText().toString();
                         List<String> ress = myDb.pullUserInfo();
 
-                            //Toast.makeText(LoginActivity.this, ress.get(0) + " " + ress.get(1) + " " + ress.get(2) , Toast.LENGTH_LONG).show();
                             if(validateLogin(ress, mailField, passField)){
                                 Bundle b = new Bundle();
                                 String[] columnsArr = new String[3];
@@ -78,10 +81,10 @@ public class LoginActivity extends AppCompatActivity {
                                 loginIntent.putExtras(b);
                                 startActivity(loginIntent);
 
-                                Toast.makeText(LoginActivity.this, "Logged in!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginActivity.this, "Успешен логин!", Toast.LENGTH_LONG).show();
                             }
                             else{
-                                Toast.makeText(LoginActivity.this, "Something went wrong! Try again. \n", Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginActivity.this, "Некоректно попълнена форма! Моля опитайте отново. \n", Toast.LENGTH_LONG).show();
                             }
 
                     } // onClick

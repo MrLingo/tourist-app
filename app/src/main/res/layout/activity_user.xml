@@ -10,42 +10,35 @@
     <Button
         android:id="@+id/destBtn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="280dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="372dp"
         android:background="#34CC3D"
-        android:textColor="#FFFFFF"
         android:text="Карти"
-        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.93"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.993" />
 
     <Button
         android:id="@+id/destListBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="116dp"
+        android:layout_height="51dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="280dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginRight="44dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="32dp"
         android:background="#34CC3D"
-        android:textColor="#FFFFFF"
         android:text="Дестинации"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/destinationsSection"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintEnd_toStartOf="@+id/destBtn"
+        app:layout_constraintHorizontal_bias="0.285"
+        app:layout_constraintStart_toEndOf="@+id/visitsBtn" />
 
     <TextView
         android:id="@+id/UserNick"
@@ -70,8 +63,10 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center"
         android:textSize="35dp"
+        app:layout_constraintBottom_toTopOf="@+id/destListBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UserNick" />
@@ -122,16 +117,13 @@
         android:layout_height="218dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="124dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UserMail"
-        app:layout_constraintVertical_bias="0.412">
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -147,24 +139,26 @@
         android:layout_marginRight="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/destinationsSection"
         app:layout_constraintEnd_toEndOf="@+id/destinationsSection"
+        app:layout_constraintHorizontal_bias="0.543"
         app:layout_constraintStart_toStartOf="@+id/destinationsSection"
-        app:layout_constraintTop_toTopOf="@+id/destinationsSection" />
+        app:layout_constraintTop_toTopOf="@+id/destinationsSection"
+        app:layout_constraintVertical_bias="0.341" />
 
     <Button
         android:id="@+id/visitsBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="123dp"
+        android:layout_height="51dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="372dp"
         android:background="#34CC3D"
-        android:textColor="#FFFFFF"
         android:text="Посещения"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="280dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.993"
         tools:ignore="MissingConstraints" />
 
 </android.support.constraint.ConstraintLayout>
