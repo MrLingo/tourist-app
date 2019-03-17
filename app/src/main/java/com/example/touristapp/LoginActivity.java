@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                         String passField = passEditText.getText().toString();
                         List<String> ress = myDb.pullUserInfo();
 
-                            Toast.makeText(LoginActivity.this, ress.get(0) + " " + ress.get(1) + " " + ress.get(2) , Toast.LENGTH_LONG).show();
+                            //Toast.makeText(LoginActivity.this, ress.get(0) + " " + ress.get(1) + " " + ress.get(2) , Toast.LENGTH_LONG).show();
                             if(validateLogin(ress, mailField, passField)){
                                 Bundle b = new Bundle();
                                 String[] columnsArr = new String[3];
@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                                 columnsArr[1] = col2;
                                 columnsArr[2] = col3;
 
-                                b.putStringArray("UserCredentials", columnsArr);   //new String[]{value1, value2});
+                                b.putStringArray("UserCredentials", columnsArr);
 
                                 // Redirect to user page
                                 Intent loginIntent = new Intent(LoginActivity.this, UserActivity.class);

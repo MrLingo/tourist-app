@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.util.List;
+
 public class UserActivity extends AppCompatActivity {
     TextView nickName, mail;
     DatabaseHelper myDb;
@@ -24,8 +26,8 @@ public class UserActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        nickName = (TextView) findViewById(R.id.UserNick);
-        mail = (TextView) findViewById(R.id.UserMail);
+        nickName = findViewById(R.id.UserNick);
+        mail =  findViewById(R.id.UserMail);
 
         // Get user's mail and nick name from LoginActivity and display them here.
         Bundle b=this.getIntent().getExtras();
@@ -35,18 +37,13 @@ public class UserActivity extends AppCompatActivity {
         nickName.setText(userCred[2]);
         //Toast.makeText(UserActivity.this, userCred[1] + " " + userCred[2], Toast.LENGTH_LONG).show();
 
-        //deleteProfilBtn
-
         myDb=new DatabaseHelper(this);
 
         Button delDbBtn = findViewById(R.id.deleteProfileBtn);
         delDbBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // myDb.reCreateTable1();
                 myDb.deleteUser(userCred[0], userCred[2]);
                 Toast.makeText(UserActivity.this, "User Removed!", Toast.LENGTH_LONG).show();
-
-                // redirect
 
                 startActivity(new Intent(UserActivity.this, MainActivity.class));
             }
@@ -58,10 +55,55 @@ public class UserActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mail.setText("");
                 nickName.setText("");
-                // redirect
 
                 startActivity(new Intent(UserActivity.this, MainActivity.class));
             }
         });
+
+        // List view.
+        Button destListBtn = findViewById(R.id.destListBtn);
+        destListBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(UserActivity.this, DestinationsActivity.class));
+            }
+        });
+
+        Button visitstBtn = findViewById(R.id.visitsBtn);
+        visitstBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(UserActivity.this, Visits.class));
+            }
+        });
+
+
+        // Google maps view.
+        Button destinationsBtn = findViewById(R.id.destBtn);
+        destinationsBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Bundle b = new Bundle();
+
+                List<String> result = myDb.getDestinations();
+
+                // Number of TOTAL columns.
+                int size = result.size();
+
+                // Every record stored here:
+                String[] resultArr = new String[size];
+
+                int index = 1;
+                for(int i = 0; i < size; i++){
+                    resultArr[i] = result.get(index - 1);
+                    index++;
+                }
+
+                b.putStringArray("Records", resultArr);
+                Intent mapsIntent = new Intent(UserActivity.this, MapsActivity.class);
+                mapsIntent.putExtras(b);
+                startActivity(mapsIntent);
+            }
+        });
+
+
+
     } // onCreate method
 }

@@ -39,6 +39,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_3_COL_2 = "userId";
     public static final String TABLE_3_COL_3 = "destinationId";
     public static final String TABLE_3_COL_4 = "visitDate";
+    // Added
+    public static final String TABLE_3_COL_5 = "destinationTitle";
+    public static final String TABLE_3_COL_6 = "userNickName";
+
 
     // destinations group
     public static final String TABLE_4_NAME = "destinationGroup";
@@ -64,13 +68,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 " FOREIGN KEY(destinationGroupId) REFERENCES destinationGroup(id) )");
 
         // visits
-        db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_3_NAME + "( " + TABLE_3_COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,  " + TABLE_3_COL_2 +" INTEGER NOT NULL, " + TABLE_3_COL_3 + " INTEGER NOT NULL," + TABLE_3_COL_4 + " VARCHAR(25) NOT NULL, " +
-                "FOREIGN KEY(userId) REFERENCES user(id),  FOREIGN KEY(" + TABLE_3_COL_3 + ") REFERENCES destinations(id)) " );
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_3_NAME + "( " + TABLE_3_COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,  " + TABLE_3_COL_2 +" INTEGER NOT NULL, " + TABLE_3_COL_3 + " INTEGER NOT NULL," + TABLE_3_COL_4 + " VARCHAR(25) NOT NULL, "
+                + TABLE_3_COL_5 + " VARCHAR(35) NOT NULL, " + TABLE_3_COL_6  + " VARCHAR(35) NOT NULL ,FOREIGN KEY(userId) REFERENCES user(id), FOREIGN KEY(" + TABLE_3_COL_3 + ") REFERENCES destinations(id)) " );
 
         // user
         db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_1_NAME + "( " + TABLE_1_COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT, " + TABLE_1_COL_2 +" VARCHAR(35) NOT NULL, " + TABLE_1_COL_3 +
                    " VARCHAR(50) NOT NULL, " + TABLE_1_COL_4 + " VARCHAR(35) NOT NULL )");
-
 
         // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -223,7 +226,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         try {
             Cursor res = db.rawQuery("select userId, destinationId, visitDate from " + TABLE_3_NAME , null);
-            int id = res.getColumnIndex(TABLE_3_COL_1);
+            //int id = res.getColumnIndex(TABLE_3_COL_1);
             int userId = res.getColumnIndex(TABLE_3_COL_2);
             int destinationId = res.getColumnIndex(TABLE_3_COL_3);
             int visitDate = res.getColumnIndex(TABLE_3_COL_4);
@@ -244,11 +247,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean setVisit(int userId, int destinationId, String visitDate, SQLiteDatabase db){
+    public boolean setVisit(int userId, int destinationId, String visitDate, String destinationTitle, String userNick, SQLiteDatabase db){
         ContentValues contentValues = new ContentValues();
         contentValues.put(TABLE_3_COL_2, userId);
         contentValues.put(TABLE_3_COL_3, destinationId);
         contentValues.put(TABLE_3_COL_4, visitDate);
+        contentValues.put(TABLE_3_COL_5, destinationTitle);
+        contentValues.put(TABLE_3_COL_6, userNick);
 
         long result = db.insert(TABLE_3_NAME, null, contentValues);
         if (result == -1) {
@@ -304,7 +309,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-
+    /*
     public boolean updateUserInfo(String id, String mail, String password, String nickName, int visitedDestinations){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -315,6 +320,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.update(TABLE_1_NAME, contentValues, "ID = ?", new String[]{id});
         return true;
     }
+    */
 
 
     public void emptyTables(){
@@ -337,7 +343,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public List<String> getSingleDestInfo(int position){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select destinationName, destinationDescription, destinationImg latitude, longitude from " + TABLE_2_NAME + " where id = " + position, null);
+        Cursor res = db.rawQuery("select destinationName, destinationDescription, destinationImg, latitude, longitude from " + TABLE_2_NAME + " where id = " + position, null);
 
         List<String> destList = new ArrayList<String>();
 
@@ -364,5 +370,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return destList;
     }
-
 }

@@ -7,6 +7,42 @@
     android:background="#E73B3B"
     tools:context=".UserActivity">
 
+    <Button
+        android:id="@+id/destBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="280dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Maps View"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.93"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/destListBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="280dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:layout_marginBottom="8dp"
+        android:text="Destinations "
+        app:layout_constraintBottom_toTopOf="@+id/destinationsSection"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
     <TextView
         android:id="@+id/UserNick"
         android:layout_width="280dp"
@@ -79,7 +115,7 @@
     <ScrollView
         android:id="@+id/destinationsSection"
         android:layout_width="395dp"
-        android:layout_height="289dp"
+        android:layout_height="218dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="32dp"
@@ -91,7 +127,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UserMail"
-        app:layout_constraintVertical_bias="0.147">
+        app:layout_constraintVertical_bias="0.412">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -102,12 +138,26 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/destinatonsList"
         android:layout_width="306dp"
-        android:layout_height="255dp"
+        android:layout_height="177dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/destinationsSection"
         app:layout_constraintEnd_toEndOf="@+id/destinationsSection"
         app:layout_constraintStart_toStartOf="@+id/destinationsSection"
         app:layout_constraintTop_toTopOf="@+id/destinationsSection" />
+
+    <Button
+        android:id="@+id/visitsBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="Visits"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="280dp" />
 
 </android.support.constraint.ConstraintLayout>

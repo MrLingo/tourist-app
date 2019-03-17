@@ -20,6 +20,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DescriptionActivity extends AppCompatActivity {
 
@@ -27,7 +28,7 @@ public class DescriptionActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private LocationListener locationListener;
 
-    // Create each location by setting it's lat and lon. ( Eventually move to 'Destination Screen' activity later. )
+    // Create each location by setting it's lat and lon.
     public Location LocationFactory(float lat, float lon) {
         Location destination = new Location("");
         destination.setLatitude(lat);
@@ -40,12 +41,12 @@ public class DescriptionActivity extends AppCompatActivity {
         float distanceInMeters = myLocation.distanceTo(destinationToVisit);
 
         if (distanceInMeters <= 5000) {
-            //Log.i("Within radius!", "Within distance");
             System.out.println("Within radius");
+            Toast.makeText(DescriptionActivity.this, "Посетено!", Toast.LENGTH_LONG).show();
             return true;
         } else {
-            //Log.i("Outside radius!", "Out of radius");
             System.out.println("Outside radius");
+            Toast.makeText(DescriptionActivity.this, "Извън радиус!", Toast.LENGTH_LONG).show();
             return false;
         }
     }
@@ -67,14 +68,12 @@ public class DescriptionActivity extends AppCompatActivity {
 
         destDescription.setMovementMethod(new ScrollingMovementMethod());
 
-        //Log.i("DestinationInfo", destinationInfo[1]);
-
         destTitle.setText(destinationInfo[0]);
         destDescription.setText(destinationInfo[1]);
 
-        // --------------------------------------------
+        // ---------------------------------------------
 
-        // Change dest image from a string
+        // Change destination image from a string.
 
         Resources res = getResources();
         String mDrawableName = destinationInfo[2];
@@ -92,12 +91,8 @@ public class DescriptionActivity extends AppCompatActivity {
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-
                 if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-
-                    System.out.println("Here ?");
 
                     if (ActivityCompat.checkSelfPermission(DescriptionActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(DescriptionActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         // TODO: Consider calling
@@ -164,11 +159,11 @@ public class DescriptionActivity extends AppCompatActivity {
 
                     if(isInsideRadius){
                         checkBox.setChecked(true);
+
                     }
                     else{
                         checkBox.setChecked(false);
                     }
-
                 }
             } //onClick
         }); // onClickCheckBox Listener.

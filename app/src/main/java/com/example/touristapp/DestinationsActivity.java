@@ -38,7 +38,7 @@ public class DestinationsActivity extends AppCompatActivity {
 
         final List<String> result = myDb.getDestinations();
 
-        // Put every destination title inside ListView.
+        // Put every destination title and Image inside ListView.
         int index = 1;
         for(int i = 0; i < result.size(); i++){
             if(index == result.size() - 7){
@@ -52,7 +52,7 @@ public class DestinationsActivity extends AppCompatActivity {
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(DestinationsActivity.this, stringArr.get(position), Toast.LENGTH_LONG).show();
+                //Toast.makeText(DestinationsActivity.this, stringArr.get(position), Toast.LENGTH_LONG).show();
                 Bundle b = new Bundle();
 
                 // Final result array to pass to Intent.
@@ -67,7 +67,7 @@ public class DestinationsActivity extends AppCompatActivity {
                 destArr[3] = result2.get(3); // latitude
                 destArr[4] = result2.get(4); // longitude
 
-                Log.i("DestinationInfo", destArr[2]);
+                Log.i("DestinationInfo", destArr[3] + " |||||||||||||| " + destArr[4]);
 
                 // Send title and description to the DescriptionActivity.
                 b.putStringArray("destinationInfo", destArr);
