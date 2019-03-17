@@ -55,16 +55,18 @@ public class DestinationsActivity extends AppCompatActivity {
                 Toast.makeText(DestinationsActivity.this, stringArr.get(position), Toast.LENGTH_LONG).show();
                 Bundle b = new Bundle();
 
-                // Final result array
-                String[] destArr = new String[2];
+                // Final result array to pass to Intent.
+                String[] destArr = new String[4];
 
                 // Get title + description of the clicked current list item.
-                result2 = myDb.getDestTitleAndDesc(position + 1);
+                result2 = myDb.getSingleDestInfo(position + 1);
 
-                destArr[0] = result2.get(0);
-                destArr[1] = result2.get(1);
+                destArr[0] = result2.get(0); // title
+                destArr[1] = result2.get(1); // description
+                destArr[2] = result2.get(2); // latitude
+                destArr[3] = result2.get(3); // longitude
 
-                //Log.i("DestinationInfo", destArr[0] + " ||| " + destArr[1]);
+                //Log.i("DestinationInfo", destArr[2] + " ||| " + destArr[3]);
 
                 // Send title and description to the DescriptionActivity.
                 b.putStringArray("destinationInfo", destArr);

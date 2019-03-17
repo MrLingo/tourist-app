@@ -332,13 +332,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM " + TABLE_1_NAME + " WHERE " + TABLE_1_COL_2 + " = '" + mail + "' AND " + TABLE_1_COL_4 + " = '" + nickName + "' ");
     }
 
-    public List<String> getDestTitleAndDesc(int position){
+    public List<String> getSingleDestInfo(int position){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select destinationName, destinationDescription from " + TABLE_2_NAME + " where id = " + position, null);
+        Cursor res = db.rawQuery("select destinationName, destinationDescription, latitude, longitude from " + TABLE_2_NAME + " where id = " + position, null);
 
+        /*
         int id = res.getColumnIndex(TABLE_2_COL_1);
         int destinationName = res.getColumnIndex(TABLE_2_COL_2);
         int destinationDescription = res.getColumnIndex(TABLE_2_COL_3);
+        */
 
         List<String> destList = new ArrayList<String>();
 
