@@ -26,8 +26,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_2_NAME = "destinations";
     public static final String TABLE_2_COL_1 = "id";
     public static final String TABLE_2_COL_2 = "destinationName";
-    public static final String TABLE_2_COL_3 = "destinationImg";
-    public static final String TABLE_2_COL_4 = "destinationDescription";
+    public static final String TABLE_2_COL_3 = "destinationDescription";
+    public static final String TABLE_2_COL_4 = "destinationImg";
     public static final String TABLE_2_COL_5 = "latitude";
     public static final String TABLE_2_COL_6 = "longitude";
     public static final String TABLE_2_COL_7 = "destinationGroupId";
@@ -335,12 +335,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<String> getSingleDestInfo(int position){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery("select destinationName, destinationDescription, latitude, longitude from " + TABLE_2_NAME + " where id = " + position, null);
-
-        /*
-        int id = res.getColumnIndex(TABLE_2_COL_1);
-        int destinationName = res.getColumnIndex(TABLE_2_COL_2);
-        int destinationDescription = res.getColumnIndex(TABLE_2_COL_3);
-        */
 
         List<String> destList = new ArrayList<String>();
 

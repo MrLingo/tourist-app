@@ -66,7 +66,7 @@ public class DestinationsActivity extends AppCompatActivity {
                 destArr[2] = result2.get(2); // latitude
                 destArr[3] = result2.get(3); // longitude
 
-                //Log.i("DestinationInfo", destArr[2] + " ||| " + destArr[3]);
+                Log.i("DestinationInfo", destArr[0] + " ||| " + destArr[1]);
 
                 // Send title and description to the DescriptionActivity.
                 b.putStringArray("destinationInfo", destArr);

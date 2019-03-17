@@ -102,10 +102,6 @@ public class DescriptionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
-                // Check distance between current GPS Location and the destination.
-                //if(calculateDistance(myLocation, d))
-
                 locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
                 if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
@@ -123,7 +119,6 @@ public class DescriptionActivity extends AppCompatActivity {
                         return;
                     }
                     locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, new LocationListener() {
-
 
                         @Override
                         public void onLocationChanged(Location location) {
@@ -184,8 +179,6 @@ public class DescriptionActivity extends AppCompatActivity {
                     }
 
                 }
-
-
 
 
                 /*
